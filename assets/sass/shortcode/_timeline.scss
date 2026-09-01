@@ -1,0 +1,552 @@
+/*--------------------------------------------------------------
+Trainer Timeline
+----------------------------------------------------------------*/
+
+.trainer-timeline-section {
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* ======================================
+   MAIN TIMELINE
+====================================== */
+
+.trainer-timeline {
+  position: relative;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 25px 0 10px;
+}
+
+
+/* Center vertical line */
+
+.trainer-timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+
+  width: 1px;
+
+  background: rgba(255, 255, 255, 0.2);
+
+  transform: translateX(-50%);
+}
+
+
+/* ======================================
+   TIMELINE ITEM
+====================================== */
+
+.trainer-timeline-item {
+  position: relative;
+  display: flex;
+  width: 100%;
+  margin-bottom: 75px;
+}
+
+.trainer-timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+
+.trainer-timeline-item.timeline-left {
+  justify-content: flex-start;
+  padding-right: calc(50% + 65px);
+}
+
+
+.trainer-timeline-item.timeline-right {
+  justify-content: flex-end;
+  padding-left: calc(50% + 65px);
+}
+
+
+/* ======================================
+   CARD
+====================================== */
+
+.trainer-timeline-card {
+  position: relative;
+
+  width: 100%;
+  min-height: 210px;
+
+  padding: 35px 38px;
+
+  /* Same dark surface style as Services */
+  background: $secondaryBg;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+/* ======================================
+   OFFSET FRAME
+   Normal state = subtle/translucent
+====================================== */
+
+/*
+  This imitates the Services card frame:
+
+  border:
+  rgba(255,255,255,.2)
+
+  background:
+  rgba(169,198,179,.05)
+*/
+
+.timeline-left .trainer-timeline-card {
+  box-shadow:
+    -10px 10px 0 rgba(169, 198, 179, 0.05),
+    -10px 10px 0 1px rgba(213, 189, 162, 0.05);
+}
+
+
+.timeline-right .trainer-timeline-card {
+  box-shadow:
+    10px 10px 0 rgba(169, 198, 179, 0.05),
+    10px 10px 0 1px rgba(213, 189, 162, 0.05);
+}
+
+
+/* ======================================
+   CARD HOVER
+
+   IMPORTANT:
+   Card stays dark.
+   Only offset frame changes.
+====================================== */
+
+.trainer-timeline-card:hover {
+  background: $secondaryBg;
+
+  transform: translateY(-6px);
+}
+
+
+/* Left offset frame becomes green */
+
+.timeline-left .trainer-timeline-card:hover {
+  box-shadow:
+    -10px 10px 0 rgba(54, 214, 107, 0.14),
+    -10px 10px 0 1px $primary;
+}
+
+
+/* Right offset frame becomes green */
+
+.timeline-right .trainer-timeline-card:hover {
+  box-shadow:
+    10px 10px 0 rgba(54, 214, 107, 0.14),
+    10px 10px 0 1px $primary;
+}
+
+
+/* ======================================
+   EDUCATION / EXPERIENCE LABEL
+====================================== */
+
+.timeline-tag {
+  position: relative;
+  z-index: 2;
+
+  display: block;
+
+  padding: 0;
+  margin-bottom: 14px;
+
+  color: $primary;
+
+  border: none;
+  background: transparent;
+
+  font-family: Teko;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+
+  letter-spacing: 0;
+
+  text-transform: none;
+}
+
+
+
+
+/* ======================================
+   YEAR
+====================================== */
+
+.timeline-year {
+  position: absolute;
+
+  right: 25px;
+  bottom: -8px;
+
+  z-index: 0;
+
+  color: rgba(255, 255, 255, 0.08);
+
+  font-family: var(--heading-font-family);
+
+  font-size: 70px;
+  font-weight: 700;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+
+  pointer-events: none;
+}
+
+
+.timeline-right .timeline-year {
+  right: auto;
+  left: 25px;
+}
+
+
+/* ======================================
+   TITLE
+====================================== */
+
+.timeline-title {
+  position: relative;
+  z-index: 2;
+
+  margin-bottom: 12px;
+
+  color: $white;
+
+  font-family: var(--heading-font-family);
+
+  font-size: 30px;
+  font-weight: 600;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+}
+
+
+/* ======================================
+   DESCRIPTION
+====================================== */
+
+.timeline-description {
+  position: relative;
+  z-index: 2;
+
+  max-width: 480px;
+
+  color: $white;
+
+  opacity: 0.75;
+
+  font-size: 15px;
+
+  line-height: 24px;
+}
+
+
+/* ======================================
+   CENTER MARKER
+====================================== */
+
+.trainer-timeline-marker {
+  position: absolute;
+
+  top: 45px;
+  left: 50%;
+
+  z-index: 5;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 50px;
+  height: 50px;
+
+  color: $black;
+
+  background: $primary;
+
+  border: 6px solid var(--body-bg-color);
+  border-radius: 0;
+
+  transform:
+    translateX(-50%)
+    rotate(45deg);
+
+  transition: transform 0.3s ease;
+}
+
+
+/* Rotate icon back */
+
+.trainer-timeline-marker svg {
+  width: 20px;
+  height: 20px;
+
+  transform: rotate(-45deg);
+}
+
+
+/* Small marker movement on hover */
+
+.trainer-timeline-item:hover
+.trainer-timeline-marker {
+  transform:
+    translateX(-50%)
+    rotate(45deg)
+    scale(1.08);
+}
+
+
+/* ======================================
+   CONNECTOR LINES
+====================================== */
+
+.timeline-left::after,
+.timeline-right::after {
+  content: "";
+
+  position: absolute;
+
+  top: 70px;
+
+  width: 65px;
+  height: 1px;
+
+  background: rgba(255, 255, 255, 0.2);
+}
+
+
+/* Small green endpoint */
+
+.timeline-left::before,
+.timeline-right::before {
+  content: "";
+
+  position: absolute;
+
+  top: 67px;
+
+  width: 7px;
+  height: 7px;
+
+  background: $primary;
+}
+
+
+.timeline-left::after {
+  right: 50%;
+}
+
+
+.timeline-left::before {
+  right: calc(50% + 61px);
+}
+
+
+.timeline-right::after {
+  left: 50%;
+}
+
+
+.timeline-right::before {
+  left: calc(50% + 61px);
+}
+
+
+/* ======================================
+   TABLET
+====================================== */
+
+@media screen and (max-width: 991px) {
+
+  .trainer-timeline {
+    padding-left: 20px;
+  }
+
+
+  .trainer-timeline::before {
+    left: 26px;
+
+    transform: none;
+  }
+
+
+  .trainer-timeline-item,
+  .trainer-timeline-item.timeline-left,
+  .trainer-timeline-item.timeline-right {
+    display: block;
+
+    padding-left: 85px;
+    padding-right: 10px;
+
+    margin-bottom: 50px;
+  }
+
+
+  .trainer-timeline-marker {
+    left: 27px;
+
+    width: 46px;
+    height: 46px;
+  }
+
+
+  .timeline-left::after,
+  .timeline-right::after {
+    left: 27px;
+    right: auto;
+
+    top: 68px;
+
+    width: 58px;
+  }
+
+
+  .timeline-left::before,
+  .timeline-right::before {
+    left: 81px;
+    right: auto;
+
+    top: 65px;
+  }
+
+
+  /*
+    On tablet all cards use the
+    same right-bottom offset.
+  */
+
+  .timeline-left .trainer-timeline-card,
+  .timeline-right .trainer-timeline-card {
+    box-shadow:
+      10px 10px 0 rgba(169, 198, 179, 0.05),
+      10px 10px 0 1px rgba(255, 255, 255, 0.2);
+  }
+
+
+  /* Only frame turns green */
+
+  .timeline-left .trainer-timeline-card:hover,
+  .timeline-right .trainer-timeline-card:hover {
+    background: $secondaryBg;
+
+    box-shadow:
+      10px 10px 0 rgba(54, 214, 107, 0.14),
+      10px 10px 0 1px $primary;
+  }
+
+
+  .timeline-year,
+  .timeline-right .timeline-year {
+    right: 20px;
+    left: auto;
+
+    font-size: 60px;
+  }
+}
+
+
+/* ======================================
+   MOBILE
+====================================== */
+
+@media screen and (max-width: 575px) {
+
+  .trainer-timeline {
+    padding-left: 0;
+  }
+
+
+  .trainer-timeline::before {
+    left: 18px;
+  }
+
+
+  .trainer-timeline-item,
+  .trainer-timeline-item.timeline-left,
+  .trainer-timeline-item.timeline-right {
+    padding-left: 58px;
+    padding-right: 10px;
+
+    margin-bottom: 42px;
+  }
+
+
+  .trainer-timeline-marker {
+    left: 18px;
+
+    width: 38px;
+    height: 38px;
+
+    border-width: 4px;
+  }
+
+
+  .trainer-timeline-marker svg {
+    width: 16px;
+    height: 16px;
+  }
+
+
+  .timeline-left::after,
+  .timeline-right::after {
+    left: 18px;
+
+    top: 62px;
+
+    width: 40px;
+  }
+
+
+  .timeline-left::before,
+  .timeline-right::before {
+    left: 54px;
+
+    top: 59px;
+  }
+
+
+  .trainer-timeline-card {
+    min-height: 0;
+
+    padding: 26px 22px;
+  }
+
+
+  .timeline-title {
+    font-size: 24px;
+  }
+
+
+  .timeline-description {
+    font-size: 14px;
+  }
+
+
+  .timeline-year,
+  .timeline-right .timeline-year {
+    right: 12px;
+    bottom: 0;
+
+    font-size: 46px;
+  }
+}

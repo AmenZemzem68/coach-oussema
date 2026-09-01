@@ -1,0 +1,23 @@
+/*-------------------------------------------------------------- 
+1. Basic Color Variable 
+----------------------------------------------------------------*/ 
+ 
+$white: #ffffff; 
+$black: #07110d; 
+$primary: #36d66b; 
+$secondary: #a9c6b3; 
+$border: #26352e; 
+$secondaryBg: #0b1a13; 
+$whiteSubtle: #1f3328; 
+ 
+:root { 
+  --body-font-family: "Vazirmatn", sans-serif; 
+  --heading-font-family: "Teko", sans-serif; 
+  --body-color: #d7dcd9; 
+  --body-bg-color: #07110d; 
+  --heading-color: #ffffff; 
+  --primary-color: #36d66b; 
+  --white-color: #ffffff; 
+  --black-color: #000000; 
+  --border-color: #26352e; 
+}
