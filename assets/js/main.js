@@ -1,6 +1,15 @@
 (function ($) {
   ("use strict");
 
+  // Notyf notifications
+  const notyf = new Notyf({
+    duration: 4000,
+    position: {
+      x: "right",
+      y: "top",
+    },
+  });
+
   /*
 |--------------------------------------------------------------------------
 | Template Name: Gymfito
@@ -53,6 +62,10 @@
 
   $(function () {
     $(window).trigger("resize");
+
+    emailjs.init({
+      publicKey: "kOZgX6kV8qWQYLFdt",
+    });
     mainNav();
     stickyHeader();
     dynamicBackground();
@@ -545,5 +558,39 @@
       });
     });
   }
+
+  /*--------------------------------------------------------------
+    Contact Form
+  --------------------------------------------------------------*/
+
+  function contactForm() {
+    const form = document.getElementById("contact-form");
+
+    if (!form) {
+      return;
+    }
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      emailjs
+        .sendForm("service_du5a68d", "template_q1uq9nc", form)
+        .then(function () {
+          console.log("Email sent successfully!");
+
+          notyf.success("Your message has been sent successfully!");
+
+          form.reset();
+        })
+        .catch(function (error) {
+          console.error("EmailJS error:", error);
+
+          notyf.error("Something went wrong. Please try again.");
+        });
+    });
+  }
+
+  contactForm();
+
   //end the scripts
 })(jQuery);
